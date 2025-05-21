@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize - Bake My Way</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <style>
+    .cart-container { max-width: 800px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; }
+    .cart-item { display: flex; align-items: center; justify-content: space-between; margin: 10px 0; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+    .cart-item img { width: 60px; border-radius: 5px; }
+    .cart-item-details { flex: 1; padding-left: 10px; }
+    .cart-actions { text-align: right; margin-top: 20px; }
+    .cart-actions button { margin-left: 10px; padding: 10px 15px; background: #ff8000; border: none; color: white; cursor: pointer; border-radius: 5px; }
+    .cart-actions button:hover { background:#ff8000; }
+    .total-price { font-weight: bold; font-size: 18px; }
+  </style>
+  <!-- Firebase App (core SDK) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+
+<!-- Firebase Realtime Database -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js"></script>
+
+
+</head>
+<body>
+    <main>
+        <div class="black">
+            <nav class="navbar">
+                <div class="logo">
+                  <h1><span>Bake My Way</span></h1>
+                  <div class="tagline"></div>
+                </div>
+            
+                <div class="nav-links">
+                  <a href="index.html" >Home</a>
+                  <a href="Explore.html">Explore</a>
+                  <a href="customize.html" >Customize</a>
+                  <a href="cart.html"><img src="icons8-cart-30.png"></a>
+                  <a href="login.html" class="contact-btn">Login</a>
+                </div>
+            </nav>
+          </div>
+        <div class="cart-container">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <p class="total-price">Total: $<span id="total">0</span></p>
+    <div class="cart-actions">
+      <button onclick="clearCart()">Clear All</button>
+      <button onclick="checkout()">Checkout</button>
+    </div>
+  </div>
+
+ <script>
+  // Your Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyDHAaG1uDP_bz7JUFruMerzYnSEFhIfS58",
+    authDomain: "bake-my-way.firebaseapp.com",
+    databaseURL: "https://bake-my-way-default-rtdb.asia-southeast1.firebasedatabase.app/", // Add this for Realtime DB
+    projectId: "bake-my-way",
+    storageBucket: "bake-my-way.appspot.com",
+    messagingSenderId: "17083601193",
+    appId: "1:17083601193:web:33a4a3d028e56a61a3e738",
+    measurementId: "G-4GWQMZV0RH"
+  };
+
+  // Initialize Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+
+  const cartContainer = document.getElementById('cart-items');
+  const totalEl = document.getElementById('total');
+
+  function renderCart() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cartContainer.innerHTML = '';
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      total += item.price;
+
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerHTML = `
+        <img src="${item.image}" alt="${item.name}">
+        <div class="cart-item-details">
+          <p><strong>${item.name}</strong></p>
+          <p>Price: $${item.price}</p>
+        </div>
+        <button onclick="deleteItem(${index})">Delete</button>
+      `;
+      cartContainer.appendChild(div);
+    });
+
+    totalEl.textContent = total.toFixed(2);
+  }
+
+  function deleteItem(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
+  }
+
+  function clearCart() {
+    localStorage.removeItem('cart');
+    renderCart();
+  }
+
+  function checkout() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+    const userId = "user_" + Date.now(); // dummy user ID
+    database.ref('carts/' + userId).set(cart)
+      .then(() => {
+        alert("Cart saved to Firebase!");
+        clearCart();
+      })
+      .catch(error => {
+        alert("Error saving to Firebase: " + error);
+      });
+  }
+
+  renderCart();
+</script>
+
+          <footer class="footer">
+            <div class="footer-container">
+              <div class="footer-about">
+                <h2>Bake My Way</h2>
+                <p>Let's bring your ideas to life and make something extraordinary together.</p>
+                
+              </div>
+          
+              <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="Explore.html">Explore</a></li>
+                  <li><a href="customize.html">Customize</a></li>
+                </ul>
+              </div>
+          
+              <div class="footer-contact social-icons">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:info@bakemyway.com">info@bakemyway.com</a></p>
+                <p>Phone: <a href="tel:+1234567890">+1 234 567 890</a></p>
+                <p>Address: Beqaa Saadnayel</p>
+                <p style="margin-bottom: 15px;margin-top: 15px;font-size: 20px;color: #ff8000;">FOLLOW US</p>
+                <a href="#"><img src="icons8-instagram-50.png" alt="INSTAGRAM"><span>INSTAGRAM</span></a>
+              </div>
+            </div>
+          
+            <div class="footer-bottom">
+              <p>&copy; 2025 BAKE MY WAY. All rights reserved.</p>
+            </div>
+          </footer>
+    </main>
+
+</body>
+</html>

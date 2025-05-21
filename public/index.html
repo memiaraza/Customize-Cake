@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bake My Way</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+    <main>
+        <div class="hero">
+            <nav class="navbar">
+                <div class="logo">
+                  <h1><span>Bake My Way</span></h1>
+                  <div class="tagline"></div>
+                </div>
+            
+                <div class="nav-links">
+                  <a href="index.html" class="active">Home</a>
+                  <a href="Explore.html">Explore</a>
+                  <a href="customize.html">Customize</a>
+                  <a href="cart.html"><img src="icons8-cart-30.png"></a>
+                  <a href="login.html" class="contact-btn">Login</a>
+                </div>
+            </nav>
+                <div class="hero-content">
+                    <h1>Bake My Way</h1>
+                    <p>Where dreams meet craftsmanship, transforming your dream cake into reality</p>
+                </div>
+          </div>
+          <section id="about">
+          <div class="about-container">
+            <h2>ABOUT US</h2>
+            <p>
+              <em>
+                Welcome to Bake My Way! We are dedicated to providing exceptional content, services, and solutions that inspire and empower our customers. Our mission is to create a seamless experience that blends innovation, creativity, and reliability. 
+              </em>
+            </p>
+            <p>
+              <em>
+                Create your dream cake with us were everything comes true. We’re excited to grow with you!
+              </em>
+            </p>
+          </div>
+        </section>
+        <section class="split-section">
+          <div class="split-text">
+            <h2>Where art meets Dreams </h2>
+            <p>
+              Every celebration deserves a cake as unique as the occasion itself! We specialize in custom cakes designed to match your vision perfectly. Whether it’s a birthday, wedding, or any special event, we offer a variety of flavors, fillings, and decorations to bring your dream cake to life. From elegant designs to fun and creative themes. Let us turn your sweetest ideas into reality—because every bite should be as memorable as the moment!
+            </p>
+            <a href="customize.html" class="contact-btn">Customize</a>
+          </div>
+          <div class="split-image">
+            <img src="customizepic.jpg" >
+          </div>
+        </section>
+        <section class="explore">
+        <div class="explorecontainer">
+            <img src="explorepic.jpg" alt="Explore Cakes">
+            <div class="overlay-text">Discover Custom Cakes Designed for You!</div>
+            <a href="Explore.html" class="explore-btn">Explore</a>
+        </div>
+    </section>
+          <footer class="footer">
+            <div class="footer-container">
+              <div class="footer-about">
+                <h2>Bake My Way</h2>
+                <p>Let's bring your ideas to life and make something extraordinary together.</p>
+                
+              </div>
+          
+              <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="Explore.html">Explore</a></li>
+                  <li><a href="customize.html">Customize</a></li>
+                </ul>
+              </div>
+          
+              <div class="footer-contact social-icons">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:info@bakemyway.com">info@bakemyway.com</a></p>
+                <p>Phone: <a href="tel:+1234567890">+1 234 567 890</a></p>
+                <p>Address: Beqaa Saadnayel</p>
+                <p style="margin-bottom: 15px;margin-top: 15px;font-size: 20px;color: #ff8000;">FOLLOW US</p>
+                <a href="#"><img src="icons8-instagram-50.png" alt="INSTAGRAM"><span>INSTAGRAM</span></a>
+              </div>
+            </div>
+          
+            <div class="footer-bottom">
+              <p>&copy; 2025 BAKE MY WAY. All rights reserved.</p>
+            </div>
+          </footer>
+    </main>
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDHAaG1uDP_bz7JUFruMerzYnSEFhIfS58",
+    authDomain: "bake-my-way.firebaseapp.com",
+    projectId: "bake-my-way",
+    storageBucket: "bake-my-way.firebasestorage.app",
+    messagingSenderId: "17083601193",
+    appId: "1:17083601193:web:33a4a3d028e56a61a3e738",
+    measurementId: "G-4GWQMZV0RH"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  
+</script>
+<!-- Firebase App (the core Firebase SDK) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+
+<!-- Add other Firebase products you want to use -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
+
+</body>
+</html>
